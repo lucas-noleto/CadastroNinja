@@ -1,6 +1,9 @@
 package dev.Java10x.CadastroDeNinjas;
 
+import dev.Java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 //Entity transforuma uma classe em uma entidade do DB
 @Entity
@@ -13,11 +16,16 @@ public class NinjaModel {
     private String email;
     private int idade;
 
+    //Um ninja tem uma unica missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Chave estrangeira
+    private MissoesModel missoes;
+
     public NinjaModel(){
 
     }
 
-    public NinjaModel(String nome, String email, int idade){
+    public NinjaModel(String nome, String email, int idade, MissoesModel missoes){
         this.email=email;
         this.nome = nome;
         this.idade=idade;
