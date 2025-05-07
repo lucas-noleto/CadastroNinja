@@ -1,12 +1,10 @@
-package dev.Java10x.CadastroDeNinjas;
+package dev.Java10x.CadastroDeNinjas.Ninjas;
 
 import dev.Java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 //Entity transforuma uma classe em uma entidade do DB
 @Entity
