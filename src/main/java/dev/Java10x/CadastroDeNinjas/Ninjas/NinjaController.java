@@ -3,9 +3,7 @@ package dev.Java10x.CadastroDeNinjas.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(
-
-)
+@RequestMapping("ninjas")
 public class NinjaController {
 
     @GetMapping("/boasvindas")
@@ -37,7 +35,7 @@ public class NinjaController {
     }
 
     //editar ninja
-    @PutMapping
+    @PutMapping("alterarID")
     public String alterarNinjaPorID(){
         return "Alterar ninja por id";
     }
