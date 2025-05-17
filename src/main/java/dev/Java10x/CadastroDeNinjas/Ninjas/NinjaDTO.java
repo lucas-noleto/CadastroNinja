@@ -2,48 +2,30 @@ package dev.Java10x.CadastroDeNinjas.Ninjas;
 
 import dev.Java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
-import lombok.*;
 
-//Entity transforuma uma classe em uma entidade do DB
-@Entity
-@Table(name= "tbcadastro_de_ninjas")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Setter
-@Getter
-public class NinjaModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+public class NinjaDTO {
+
     private Long id;
-
-    @Column(name="nome")
     private String nome;
-
-    @Column(unique = true)
     private String email;
-
-    @Column(name="img_url")
     private String imgUrl;
-
-    @Column(name="idade")
     private int idade;
-
-    //Um ninja tem uma unica missão
-    @ManyToOne
-    @JoinColumn(name = "missoes_id") // Chave estrangeira
-
     private MissoesModel missoes;
-
-    @Column(name="rank")
     private String rank;
 
     //No args constructor
-
+    public NinjaDTO() {}
 
     //Arg constructor
-
+    public NinjaDTO(Long id, String nome, String email, String imgUrl, int idade, MissoesModel missoes, String rank) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.imgUrl = imgUrl;
+        this.idade = idade;
+        this.missoes = missoes;
+        this.rank = rank;
+    }
 
     public Long getId() {
         return id;

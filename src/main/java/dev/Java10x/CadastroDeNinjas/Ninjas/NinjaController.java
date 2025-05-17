@@ -8,53 +8,44 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-    private NinjasServices ninjasServices;
+    private final NinjasServices ninjasServices;
 
     public NinjaController(NinjasServices ninjasServices){
-        this.ninjasServices=ninjasServices;
+        this.ninjasServices = ninjasServices;
     }
 
     @GetMapping("/boasvindas")
     public String boasVindas(){
-
         return "Essa é minha primeira mensagem nessa página!";
     }
 
-    //adicionar ninja
+    // Adicionar ninja
     @PostMapping("/criar")
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninja){
-
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja){
         return ninjasServices.criarNinja(ninja);
     }
 
-
-    //procurar ninja por ID
+    // Procurar ninja por ID
     @GetMapping("/todos/{id}")
-    public NinjaModel listarNinjaID(@PathVariable Long id){
-
+    public NinjaDTO listarNinjaID(@PathVariable Long id){
         return ninjasServices.listarNinjasID(id);
     }
 
-
-    //mostrar todos os ninjas
+    // Mostrar todos os ninjas
     @GetMapping("/todos")
-    public List<NinjaModel> mostrarTodosOsNinjas(){
+    public List<NinjaDTO> mostrarTodosOsNinjas(){
         return ninjasServices.listarNinjas();
-
     }
 
-    //editar ninja
+    // Editar ninja
     @PutMapping("/alterar/{id}")
-    public NinjaModel alterarNinjaPorID(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado){
-        return ninjasServices.atualizarNinja(id,ninjaAtualizado);
+    public NinjaDTO alterarNinjaPorID(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado){
+        return ninjasServices.atualizarNinja(id, ninjaAtualizado);
     }
 
-    //deletar
+    // Deletar
     @DeleteMapping("/deletar/{id}")
     public void deletarNinjaPorID(@PathVariable Long id){
-
         ninjasServices.deletarNinja(id);
     }
-
-
 }
