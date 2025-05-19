@@ -1,5 +1,9 @@
 package dev.Java10x.CadastroDeNinjas.Missoes;
 
+import org.hibernate.annotations.Comment;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MissoesMapper {
 
     public MissoesModel map(MissoesDTO missoesDTO){
