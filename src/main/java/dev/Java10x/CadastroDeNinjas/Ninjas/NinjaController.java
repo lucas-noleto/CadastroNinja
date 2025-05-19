@@ -51,8 +51,9 @@ public class NinjaController {
 
     // Mostrar todos os ninjas
     @GetMapping("/todos")
-    public List<NinjaDTO> mostrarTodosOsNinjas(){
-        return ninjasServices.listarNinjas();
+    public ResponseEntity<List<NinjaDTO>> mostrarTodosOsNinjas(){
+        List<NinjaDTO> visu= ninjasServices.listarNinjas();
+        return ResponseEntity.ok(visu);
     }
 
     // Editar ninja
@@ -71,6 +72,7 @@ public class NinjaController {
     public ResponseEntity<String> deletarNinjaPorID(@PathVariable Long id)
     {
         if(ninjasServices.listarNinjasID(id)!= null) {
+            ninjasServices.deletarNinja(id);
             return ResponseEntity.ok("Ninja de id: "+id+" deletado com sucesso");
         }else{
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ninja de id: "+id+" não encontrado!");
