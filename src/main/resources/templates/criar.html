@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Criar Ninja</title>
+</head>
+<body>
+<h1>Criar Ninja</h1>
+<form th:action="@{/ui/ninjas/criar}" th:object="${ninja}" method="post">
+    <label>Nome: <input type="text" th:field="*{nome}" /></label><br/>
+    <label>Email: <input type="email" th:field="*{email}" /></label><br/>
+    <label>Idade: <input type="number" th:field="*{idade}" /></label><br/>
+    <label>Rank: <input type="text" th:field="*{rank}" /></label><br/>
+    <button type="submit">Criar</button>
+</form>
+<a href="/ui/ninjas">Voltar</a>
+</body>
+</html>

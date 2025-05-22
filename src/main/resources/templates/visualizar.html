@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Visualizar Ninja</title>
+</head>
+<body>
+<h1>Detalhes do Ninja</h1>
+<p>ID: <span th:text="${ninja.id}"></span></p>
+<p>Nome: <span th:text="${ninja.nome}"></span></p>
+<p>Email: <span th:text="${ninja.email}"></span></p>
+<p>Idade: <span th:text="${ninja.idade}"></span></p>
+<p>Rank: <span th:text="${ninja.rank}"></span></p>
+<a href="/ui/ninjas">Voltar</a>
+</body>
+</html>

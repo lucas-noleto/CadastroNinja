@@ -1,5 +1,10 @@
 package dev.Java10x.CadastroDeNinjas.Ninjas;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -11,20 +16,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
+    @Autowired
+    private NinjasServices ninjasServices;
 
-    private final NinjasServices ninjasServices;
-
-    public NinjaController(NinjasServices ninjasServices){
-        this.ninjasServices = ninjasServices;
-    }
+//    public NinjaController(NinjasServices ninjasServices){
+//        this.ninjasServices = ninjasServices;
+//    }
 
     @GetMapping("/boasvindas")
+    @Operation(summary = "Mensagem de boas vindas", description =
+    "essa rota é uma mensagem de boas vindas")
     public String boasVindas(){
         return "Essa é minha primeira mensagem nessa página!";
     }
 
     // Adicionar ninja
     @PostMapping("/criar")
+    @Operation(summary = "Cria ninjas", description = "Essa rota é uma mensagem de boas vindas")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Ninja criado com sucesso")
+    })
     public ResponseEntity<String> criarNinja(@RequestBody NinjaDTO ninja){
 
         NinjaDTO ninjaDTO= ninjasServices.criarNinja(ninja);
@@ -58,7 +69,9 @@ public class NinjaController {
 
     // Editar ninja
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<String> alterarNinjaPorID(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado){
+    public ResponseEntity<String> alterarNinjaPorID(@Parameter(description = "Usuario manda id no caminho da requisição")
+                                                        @PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado){
+
         if (ninjasServices.atualizarNinja(id, ninjaAtualizado)!=null) {
             return ResponseEntity.ok("Ninja de id: "+id+" editado com sucesso");
 

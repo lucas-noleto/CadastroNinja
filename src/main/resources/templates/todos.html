@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Ninjas</title>
+</head>
+<body>
+<h1>Lista de Ninjas</h1>
+<a href="/ui/ninjas/criar">Criar novo Ninja</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Nome</th><th>Email</th><th>Rank</th><th>Ações</th>
+    </tr>
+    <tr th:each="ninja : ${ninjas}">
+        <td th:text="${ninja.id}"></td>
+        <td th:text="${ninja.nome}"></td>
+        <td th:text="${ninja.email}"></td>
+        <td th:text="${ninja.rank}"></td>
+        <td>
+            <a th:href="@{'/ui/ninjas/' + ${ninja.id}}">Visualizar</a> |
+            <a th:href="@{'/ui/ninjas/editar/' + ${ninja.id}}">Editar</a> |
+            <a th:href="@{'/ui/ninjas/deletar/' + ${ninja.id}}"
+               onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

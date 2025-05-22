@@ -12,6 +12,7 @@ import lombok.*;
 @Data
 @Setter
 @Getter
+@ToString(exclude = "missoes")
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
